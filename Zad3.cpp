@@ -3,6 +3,7 @@
 #include<fstream>     // Obsluga pliku
 #include <regex>     // Walidacja danych
 #include<sstream>   // Wypisywanie danych
+#include<cstdio>   // Usuwanie i zmiana nazwy pliku
 
 using namespace std;
 
@@ -20,8 +21,6 @@ powinien pozwolić na:
     Nie uszkadzają istniejącej bazy.
 */
 
-const int LINIE=5;
-
 struct Rekord{
     int id;
     string imie;
@@ -35,7 +34,7 @@ struct Rekord{
 
     Rekord() = default;
 
-    void addRecord(fstream &plik, int nr){
+    void addRecord(int nr){
         id=nr+1;
         cout<<"\t --- Dodawanie rekordu do bazy ---\n";
         cout<<"Podaj imie: ";getline(cin,imie);
@@ -49,12 +48,8 @@ struct Rekord{
 
         dataValidation();
 
-        plik.open("baza.txt", ios::app);
-        plik<<id<<endl;
-        plik<<imie<<" "<<nazwisko<<endl;
-        plik<<ulica<<" "<<kod_p<<" "<<miasto<<endl;
-        plik<<nr_tel<<" "<<email<<endl;
-        plik<<notatka<<endl;
+        fstream plik("baza.txt", ios::app);
+        plik<<id<<","<<imie<<","<<nazwisko<<","<<ulica<<","<<kod_p<<","<<miasto<<","<<nr_tel<<","<<email<<","<<notatka<<endl;
         plik.close();
 
     }
@@ -65,69 +60,102 @@ struct Rekord{
         regex numPattern(R"((\w+)(\.{0,1}(\w+))*@(\w)(\.\w+)+)");
     }
 
-    void delRecord(fstream &plik){
+    void delRecord(int id){
+        fstream plik("baza.txt", ios::in);
+        fstream temp("temp.txt",ios::out);
+        string line,delLine;
+        int count=-1;
+        while(getline(plik,line)){
+            if(count!=id){
+                temp<<line<<endl;
+            }
+            count++;
+        }
+        temp.close();
+        plik.close();
 
+        remove("baza.txt");
+        rename("temp.txt", "baza.txt");
     }
 
-    void showRecord(fstream &plik, int id){
-        plik.open("baza.txt", ios::in);
-        string line;
+    void showRecord(int id){
+        fstream plik("baza.txt", ios::in);
+        string line, data;
         int count=0;
+
+        getline(plik,line);
+        line="";
 
         if(id==0){  // wypisz wszystkie
             while(getline(plik,line)){
-                count++;
-                cout<<line<<endl;
-                if(count%LINIE==0){
-                    cout<<endl<<"------------------------"<<endl<<endl;
+                stringstream lineStream(line);
+                while(getline(lineStream,data,',')) {
+                    cout<<data<<"\t";
                 }
+                cout<<endl;
             }
         }else{
             while(getline(plik,line)){
-                count++;
-                if(count>=(id-1)*LINIE && count<=(id-1)*LINIE+LINIE){
-                    cout<<line<<endl;
+                if(count==id) {
+                    stringstream lineStream(line);
+                    while(getline(lineStream,data,',')){
+                        cout<<data<<"\t";
+                    }
+                    break;
                 }
+                count++;
             }
         }
+        cout<<endl;
         plik.close();
     }
 
-    void modifyRecord(fstream &plik, int id){
+    void modifyRecord(int id){
+        fstream plik("baza.txt", ios::in);
+        fstream tmp("tmp.txt", ios::out);
+        string line;
+        int n=0;
 
+        while(getline(plik,line)){
+            n++;
+            if(n!=id){
+                tmp<<line;
+            }else{
+                addRecord(id);
+            }
+        }
     }
 
-    void sortRecord(fstream &plik, int mode){
+    void sortRecord(int mode){
 
     }
 };
 
 // Wg. struktury pliku oraz rekodru liczy co 5 linii
-int countRecords(fstream& plik){
-    int lineC=0, n=0;
+int countRecords(){
+    fstream plik("baza.txt",ios::in);
+    int n=0;
     string line;
 
     while(getline(plik,line)){
-        lineC++;
-        if(lineC%LINIE==0){
-            n++;
-        }
+        n++;
     }
 
-    return n;
+    return n-1;
 }
 
 int main() {
     fstream plik("baza.txt", ios::in);
+    fstream temp("temp.txt", ios::out);
     char choice;
     int id;
-    Rekord* nR=new Rekord();
+    Rekord nR;
 
     if (!plik.is_open()) {
         cout <<"Plik jest uszkodzony\n";
         return 1;
     }
-    int rekordy=countRecords(plik);
+    int rekordy=countRecords();
     plik.close();
 
     while(true) {
@@ -139,28 +167,37 @@ int main() {
             cout<<rekordy<<" rekordow w bazie\n";
         }
         cout<<"[W] - wyswietl podany/wszystkie rekord/y, [D] - dodaj rekord, [U] - usun rekord \n";
-        cout<<"[M] - modyfikuj rekord, [S] - sortuj rekordy, [X] - zakoncz program\n";
+        cout<<"[E] - edytuj rekord, [S] - sortuj rekordy, [X] - zakoncz program\n";
         cout<<"Co chcesz zrobic? ";cin>>choice;
 
         switch(choice){
             case 'W':
                 case 'w':
                 cout<<"Podaj ktory rekord chcesz wyswietlic (aby wyswietlic wszystkie podaj 0): ";cin>>id;
-                nR->showRecord(plik,id);
+                nR.showRecord(id);
                 plik.close();
             break;
 
             case 'D':
             case 'd':
-                nR->addRecord(plik, rekordy);
+                nR.addRecord(rekordy);
                 rekordy++;
                 plik.close();
             break;
 
             case 'U':
             case 'u':
-                nR->delRecord(plik);
+                cout<<"Podaj id wiersza aby go usunac (aby anulowac wpisz 0): ";cin>>id;
+                nR.delRecord(id);
             break;
+
+            case 'E':
+            case 'e':
+                cout<<"Podaj ktory rekord chcesz edytowac";cin>>id;
+                nR.showRecord(id);
+
+            break;
+
 
             default:
                 cout<<"Komunikat";
