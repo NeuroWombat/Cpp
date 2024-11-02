@@ -1,20 +1,16 @@
-1
-Kamil Kula
-Wielka 65 42-713 Wroc
-565656666 email@wp.com
--
-2
-Waclaw Korniszon
-Sezamkowa 40 90-009 Wwa
-888999123 student@pwr.edu.pl
-Fajny
-3
-I O
-U 42-713 Miasto
-jakis xddd
--
-4
-WWWW ZZZZ
-Tylnia 55/12 99-000 +48 555 111 000
- WP@pl.adres
-Administracja Bloku
+ID;Imie;Nazwisko;Adres;Kod_pocztowy;Miasto;Email;Uwagi
+1;Joseph;Holland;575 James Fall Suite 991;46133;East Williamfort;timothywebster@gmail.com;Part-time worker;
+2;Thomas;Miller;55442 Ford Harbor Apt. 609;50864;Boothhaven;mary64@mckenzie.biz;Part-time worker;
+3;James;Lewis;87076 Silva Track;03305;New Heather;sperkins@barnes.com;Trainee;
+4;Susan;Snyder;96565 Davis Locks;71134;South Amyport;robertmason@hotmail.com;Student;
+5;Chad;Hughes;9505 Pruitt Underpass;41236;Stevenmouth;kwilliams@hotmail.com;Newcomer;
+6;David;Gardner;8827 Kimberly Way Apt. 831;45987;East Laurenchester;ericbarrett@rich.com;Workshop attendee;
+7;Charles;Moore;14164 Daniel Crescent Apt. 941;48618;North Alisonbury;hgrant@hotmail.com;Alumni;
+8;Ronald;Wilcox;474 Oscar Square Apt. 829;96596;Jonesville;jenniferwood@scott-willis.com;Trainee;
+9;James;Washington;29389 Peters Club Apt. 524;12281;Oliviaborough;brandi31@carter.org;Research assistant;
+10;Patrick;Lowe;2430 Monroe Knoll;29136;Williamsview;wchen@yahoo.com;Alumni;
+11;Karen;Elliott;2161 Moore Islands Apt. 633;87816;Robinsonhaven;terri01@stone.com;Volunteer;
+12;Juan;Wagner;75673 Michael Ferry;74551;Jillburgh;tracey81@hotmail.com;Course participant;
+13;Jessica;Carr;48043 Anderson Ramp Suite 985;52728;Crystalchester;erin10@roman.biz;Intern;
+14;Shelly;Buckley;8561 Sanchez Inlet;38584;New Kristine;matthew21@yahoo.com;Graduate student;
+15;Stephanie;Powell;045 Alvarado Trafficway;13273;Russellview;jamie39@nguyen.com;Graduate student;
