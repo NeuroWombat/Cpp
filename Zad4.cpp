@@ -79,7 +79,7 @@ int main(){
         if(zS>=1 && zS<=3 && doS>=1 && zS<=3 && zS!=doS){
             przenoszenie(Stosy[zS-1], Stosy[doS-1]);
         }else{
-            cout<<"Przenies ";
+            cout<<"Wybierz numery stosow od 1 do 3 (nie przenoszac krazka na ten sam stos)";
         }
     }
 
