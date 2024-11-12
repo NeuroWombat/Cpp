@@ -40,7 +40,7 @@ int toDec(string n, int p){
         else{
             cyfra=znak-'A'+10; // zamieniam wartosc ASCII na numer litery (B-A=1, 1+10=11)
         }
-        wynik=wynik*p+cyfra; wynik = wynik * p + cyfra; // Mnożymy bieżący wynik przez podstawę, aby przesunąć cyfry o jedno miejsce w lewo, a następnie dodajemy bieżącą cyfrę
+        wynik=wynik*p+cyfra; // Mnożymy bieżący wynik przez podstawę, aby przesunąć cyfry o jedno miejsce w lewo, a następnie dodajemy bieżącą cyfrę
     }
 
     return wynik;

@@ -92,10 +92,10 @@ int main(){
     cout<<"Podaj ilosc krazkow [3-10]: ";cin>>n; // sprawdzac limity
     if(n<3 || n>10){
         cout<<"Podaj poprawna ilosc krazkow";
+        return 0;
     }
 
-    // Ustalam dlugosc krazkow
-    dl=2*n-1;
+    dl=2*n-1;   // Ustalam dlugosc krazkow
 
     Stosy[0].addK(dl,n);    // Dodawanie do 1 stosu ilosc krazkow podana przez uzytkownika
     while(!win(Stosy[2],n)){

@@ -11,7 +11,7 @@ Program powinien pozwalać na:
 */
 
 // Tworzenie struktury węzła - pojedynczego elementu listy dwukierunkowej
-struct Node {
+struct Node{
     string nazwa;
     int pole;
     int obw;
@@ -22,7 +22,7 @@ struct Node {
 };
 
 
-struct List {
+struct List{
     // Wskaźniki na pierwszy, ostatni oraz aktualny węzeł
     Node* head;
     Node* tail;
@@ -36,7 +36,7 @@ struct List {
     }
 
     // Dodawanie nowego węzła na koniec listy
-    void addNode(string n,int p,int o) {
+    void addNode(string n,int p,int o){
         Node* newNode=new Node; // Tworzenie wskaźnika nowego węzła
 
         // Ustawianie danych figury
@@ -94,7 +94,7 @@ struct List {
     }
 
     // Usuwanie węzła (łączenie ze sobą sąsiednich węzłów oraz aktualizowanie głowy lub ogona w razie potrzeby)
-    void deleteNode() {
+    void deleteNode(){
         Node* temp=currNode; // Zapisanie wskaźnika do aktualnego węzła
 
         if(currNode!=nullptr){
@@ -151,7 +151,7 @@ int main(){
 
         cin>>choice;
 
-        switch(choice) {
+        switch(choice){
             case 'J':
             case 'j':
                 if(list.moveInList(choice)){
@@ -161,8 +161,8 @@ int main(){
 
             case 'L':
             case 'l':
-                if(list.moveInList(choice)) {
-                    now+=1; // Zwiększamy index gdy ruch udany
+                if(list.moveInList(choice)){
+                    now+=1; // Zwiekszamy index gdy ruch udany
                 }
             break;
 
