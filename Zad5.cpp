@@ -54,7 +54,21 @@ int main(){
     cout<<"Liczba: ";cin>>liczba;
     cout<<"System [2-16]: ";cin>>zSys;
     cout<<"Nowy system liczby [2-16]: ";cin>>doSys;
-    cout<<liczba<<"("<<zSys<<") = "<<toX(toDec(liczba,zSys),doSys)<<"("<<doSys<<")\n";
+    if(liczba.empty()){
+        cout<<"Nie podano liczby.\n";
+    }else if(liczba=="0"){
+        cout<<"Podano liczbe 0, w kazdym systemie wynik jest rowny 0\n";
+    }else if(zSys<2 && zSys>16){
+        cout<<"Podany system nie nalezy do przedzialu [2-16]";
+    }else if(doSys<2 && doSys>16){
+        cout<<"Podany system nie nalezy do przedzialu [2-16]";
+    }
+
+    if(!liczba.empty() && zSys>=2 && zSys<=16 && doSys>=2 && doSys<=16){
+        cout<<liczba<<"("<<zSys<<") = "<<toX(toDec(liczba,zSys),doSys)<<"("<<doSys<<")\n";
+    }else if(liczba.empty()){
+        cout<<"Podaj poprawne dane\n";
+    }
 
     return 0;
 }

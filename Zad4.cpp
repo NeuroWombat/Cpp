@@ -58,7 +58,7 @@ void move(Stos& x, Stos& y){
             temp->prev=y.head;                 // aby moc polaczyc ostatni krazek docelowego stosu
             y.head=temp;                      // z nowym krazkiem oraz ustawienie glowy na niego
 
-            delete temp;    // Zwolnienie pamieci
+
         }else{
             cout<<"Nie mozesz polozyc wiekszego krazka na mniejszy";
             return;
@@ -109,7 +109,7 @@ int main(){
         Stosy[2].display(3,dl);
 
         cout<<"\n\nZ jakiego stosu chcesz przelozyc krazek? ";cin>>zS;
-        cout<<"Na jaki stos chcesz polozyc krazek X.k ze stosu X? ";cin>>doS;
+        cout<<"Na jaki stos chcesz polozyc krazek? ";cin>>doS;
         if(zS>=1 && zS<=3 && doS>=1 && doS<=3 && zS!=doS){
             move(Stosy[zS-1], Stosy[doS-1]);
         }else{
